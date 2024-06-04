@@ -4,244 +4,349 @@
         "name": "DEXP", 
         "title": "laptop",
         "price": 200, 
-        "img": "../items-img/laptop1.jpg"
+        "img": "../items-img/laptop1.jpg",
+        "model": "dexp",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id" :"amzbeotl",
         "name": "CHUWI", 
         "title": "laptop",
         "price": 220, 
-        "img": "../items-img/laptop2.jpg"
+        "img": "../items-img/laptop2.jpg",
+        "model": "chuwi",
+        "rating": "n",
+        "reliability": "n"
     },
     {
         "id":"clwjfbsm",
         "name": "Lenovo", 
         "title": "laptop",
         "price": 240, 
-        "img": "../items-img/laptop3.jpg"
+        "img": "../items-img/laptop3.jpg",
+        "model": "lenovo",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"cjwyaqmxb",
         "name": "Asus Vivo",
         "title": "laptop", 
         "price": 260, 
-        "img": "../items-img/laptop4.jpg"
+        "img": "../items-img/laptop4.jpg",
+        "model": "asus",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"lwkvfnwk",
         "name": "Asus ExpertBook",
         "title": "laptop", 
         "price": 280, 
-        "img": "../items-img/laptop5.jpg"
+        "img": "../items-img/laptop5.jpg",
+        "model": "asus",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"ueoxqpgc",
         "name": "MAIBENBEN", 
         "title": "laptop",
         "price": 300, 
-        "img": "../items-img/laptop6.jpg"
+        "img": "../items-img/laptop6.jpg",
+        "model": "maibenebn",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"yivnhkvn",
         "name": "Infinix", 
         "title": "laptop",
         "price": 320, 
-        "img": "../items-img/laptop7.jpg"
+        "img": "../items-img/laptop7.jpg",
+        "model": "infinix",
+        "rating": "n",
+        "reliability": "n"
     },
     {
         "id":"pslsalsld",
         "name": "PC 1", 
         "title": "pc",
         "price": 230, 
-        "img": "../items-img/pc1.jpg"
+        "img": "../items-img/pc1.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"xslalxld",
         "name": "PC 2", 
         "title": "pc",
         "price": 240, 
-        "img": "../items-img/pc2.jpg"
+        "img": "../items-img/pc2.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"qswoawwos",
         "name": "PC 3", 
         "title": "pc",
         "price": 250, 
-        "img": "../items-img/pc3.jpg"
+        "img": "../items-img/pc3.jpg",
+        "model": "pc",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"abcdeslksdf",
         "name": "PC 4", 
         "title": "pc",
         "price": 260, 
-        "img": "../items-img/pc4.jpg"
+        "img": "../items-img/pc4.jpg",
+        "model": "pc",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"bcdelslkdf",
         "name": "PC 5", 
         "title": "pc",
         "price": 270, 
-        "img": "../items-img/pc5.jpg"
+        "img": "../items-img/pc5.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "n"
     },
     {
         "id":"deslkdfdf",
         "name": "PC 6", 
         "title": "pc",
         "price": 280, 
-        "img": "../items-img/pc6.jpg"
+        "img": "../items-img/pc6.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"lalasdkjhsk",
         "name": "PC 7", 
         "title": "pc",
         "price": 290, 
-        "img": "../items-img/pc7.jpg"
+        "img": "../items-img/pc7.jpg",
+        "model": "pc",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"aakskdjfds",
         "name": "PC 8", 
         "title": "pc",
         "price": 300, 
-        "img": "../items-img/pc8.jpg"
+        "img": "../items-img/pc8.jpg",
+        "model": "pc",
+        "rating": "n",
+        "reliability": "n"
     },
     {
         "id":"skdkfvjhndf",
         "name": "PC 9", 
         "title": "pc",
         "price": 310, 
-        "img": "../items-img/pc9.jpg"
+        "img": "../items-img/pc9.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"alskjdfh",
         "name": "PC 10", 
         "title": "pc",
         "price": 320, 
-        "img": "../items-img/pc10.jpg"
+        "img": "../items-img/pc10.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"vvsvskdfsdf",
         "name": "PC 11", 
         "title": "pc",
         "price": 330, 
-        "img": "../items-img/pc11.jpg"
+        "img": "../items-img/pc11.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"aaskjdfjhsdf",
         "name": "PC 12", 
         "title": "pc",
         "price": 340, 
-        "img": "../items-img/pc12.jpg"
+        "img": "../items-img/pc12.jpg",
+        "model": "pc",
+        "rating": "good",
+        "reliability": "n"
     },
     {
         "id":"efesfkjd",
         "name": "POCO", 
         "title": "phone",
         "price": 50, 
-        "img": "../items-img/phone1.jpg"
+        "img": "../items-img/phone1.jpg",
+        "model": "poco",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"ghalsdkf",
         "name": "Xiaomi", 
         "title": "phone",
         "price": 60, 
-        "img": "../items-img/phone2.jpg"
+        "img": "../items-img/phone2.jpg",
+        "model": "xiaomi",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"isldijhfs",
         "name": "Oukitel", 
         "title": "phone",
         "price": 60, 
-        "img": "../items-img/phone3.jpg"
+        "img": "../items-img/phone3.jpg",
+        "model": "oukitel",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"klaksdjf",
         "name": "Realme", 
         "title": "phone",
         "price": 65, 
-        "img": "../items-img/phone4.jpg"
+        "img": "../items-img/phone4.jpg",
+        "model": "realme",
+        "rating": "n",
+        "reliability": "n"
     },
     {
         "id":"skdkjhfsd",
         "name": "Techno POP", 
         "title": "phone",
         "price": 65, 
-        "img": "../items-img/phone5.jpg"
+        "img": "../items-img/phone5.jpg",
+        "model": "techno_pop",
+        "rating": "n",
+        "reliability": "n"
     },
     {
         "id":"skdjfhksjf",
         "name": "INOI", 
         "title": "phone",
         "price": 68, 
-        "img": "../items-img/phone6.jpg"
+        "img": "../items-img/phone6.jpg",
+        "model": "inoi",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"skskdfjhs",
         "name": "Infinix", 
         "title": "phone",
         "price": 70, 
-        "img": "../items-img/phone7.jpg"
+        "img": "../items-img/phone7.jpg",
+        "model": "infinix",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"skdkjfhskdj",
         "name": "Itel", 
         "title": "phone",
         "price": 70, 
-        "img": "../items-img/phone8.jpg"
+        "img": "../items-img/phone8.jpg",
+        "model": "itel",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"bvvssdfsd",
         "name": "Xbox Series X", 
         "title": "console",
         "price": 330, 
-        "img": "../items-img/console1.jpg"
+        "img": "../items-img/console1.jpg",
+        "model": "xbox",
+        "rating": "good",
+        "reliability": "n"
     },
     {
         "id":"wiksiwksk",
         "name": "Xbox Series X", 
         "title": "console",
         "price": 480, 
-        "img": "../items-img/console2.jpg"
+        "img": "../items-img/console2.jpg",
+        "model": "xbox",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"zxxsskjd",
         "name": "PS4", 
         "title": "console",
         "price": 380, 
-        "img": "../items-img/console3.jpg"
+        "img": "../items-img/console3.jpg",
+        "model": "ps",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"sslcertificate",
         "name": "PS5", 
         "title": "console",
         "price": 520, 
-        "img": "../items-img/console4.jpg"
+        "img": "../items-img/console4.jpg",
+        "model": "ps",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"kwmvtghcke",
         "name": "Nintendo Switch", 
         "title": "console",
         "price": 320, 
-        "img": "../items-img/console5.jpg"
+        "img": "../items-img/console5.jpg",
+        "model": "ns",
+        "rating": "good",
+        "reliability": "good"
     },
     {
         "id":"thwlclxnkf",
         "name": "Nintendo Switch OLED", 
         "title": "console",
         "price": 370, 
-        "img": "../items-img/console6.jpg"
+        "img": "../items-img/console6.jpg",
+        "model": "ns",
+        "rating": "good",
+        "reliability": "n"
     },
     {
         "id":"kejgkdnkncje",
-        "name": "Retro Genesis 8 bit Junior", 
+        "name": "Retro Genesis 8 bit Junior",
         "title": "console",
         "price": 15, 
-        "img": "../items-img/console7.jpg"
+        "img": "../items-img/console7.jpg",
+        "model": "retro_consoles",
+        "rating": "n",
+        "reliability": "good"
     },
     {
         "id":"dlslkdjfl",
         "name": "Retro Genesis 8 bit Classic", 
         "title": "console",
         "price": 15, 
-        "img": "../items-img/console8.jpg"
+        "img": "../items-img/console8.jpg",
+        "model": "retro_consoles",
+        "rating": "good",
+        "reliability": "n"
     }
 ]

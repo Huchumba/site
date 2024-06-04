@@ -1861,14 +1861,17 @@ img {
   float: left;
   margin: 0;
 }
+.price2 {
+  color: #4330f1;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  padding-top: 20px;
+}
+.category2 {
+  padding-top: 20px;
+}
 .category {
   color: #4330f1;
-}
-.price2 {
-    color: #4330f1;
-    font-weight: 600;
-    font-family: "Roboto", sans-serif;
-    padding-top: 20px;
 }
 .price-input {
   float: left;

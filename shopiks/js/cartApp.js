@@ -131,10 +131,18 @@ const filters = document.querySelector('#filters');
 filters.addEventListener('input', filterGoods);
 
 function filterGoods() {
-  const categoryes = [...filters.querySelectorAll('#category input:checked')].map(n => n.value), priceMin = document.querySelector('#price-min').value, priceMax = document.querySelector('#price-max').value;
+  const categoryes = [...filters.querySelectorAll('#category input:checked')].map(n => n.value),
+  rating = [...filters.querySelectorAll('#rating input:checked')].map(n => n.value),
+  reliability = [...filters.querySelectorAll('#reliability input:checked')].map(n => n.value),
+  model = [...filters.querySelectorAll('#model input:checked')].map(n => n.value),
+  priceMin = document.querySelector('#price-min').value, 
+  priceMax = document.querySelector('#price-max').value;
     
   outputGoods(data.filter(n => (    
     (!categoryes.length || categoryes.includes(n.title)) &&
+    (!rating.length || rating.includes(n.rating)) &&
+    (!reliability.length || reliability.includes(n.reliability)) &&
+    (!model.length || model.includes(n.model)) &&
     (!priceMin || priceMin <= n.price) && (!priceMax || priceMax >= n.price)    
   )));
 }
