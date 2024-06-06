@@ -5,30 +5,30 @@ let row3_products = document.getElementById("row3-products");
 
 
 
-let row0_Shop = () => {
+// let row0_Shop = () => {
 
-    return (row0_product.innerHTML = storeItems[0].map((x) => {
-        let {id, name, price, img} = x
-        return  `
-        <div class="row3-items-container product" id = product-id-${id}>
-            <div class="row3-item-information-container">
-            <img class = "product-img" src=${img} alt="">
-            <div class="add-to-cart-more">
-                <div class="add-to-cart" onclick = "addToCart(${id})" id = "${id}">
-                <i class="fa-solid fa-cart-plus add-item-to-cart"></i>
-                </div>
-                <div class="more">
-                <i class = "fa-solid fa-info"></i>
-                </div>
-            </div>
-            </div>
-            <div class="name-price">
-            <p class="item-name">${name}</p><span class="item-price">$${price}</span>
-            </div>
-        </div>
-        `
-    }).join(""))
-}
+//     return (row0_product.innerHTML = storeItems[0].map((x) => {
+//         let {id, name, price, img} = x
+//         return  `
+//         <div class="row3-items-container product" id = product-id-${id}>
+//             <div class="row3-item-information-container">
+//             <img class = "product-img" src=${img} alt="">
+//             <div class="add-to-cart-more">
+//                 <div class="add-to-cart" onclick = "addToCart(${id})" id = "${id}">
+//                 <i class="fa-solid fa-cart-plus add-item-to-cart"></i>
+//                 </div>
+//                 <div class="more">
+//                 <i class = "fa-solid fa-info"></i>
+//                 </div>
+//             </div>
+//             </div>
+//             <div class="name-price">
+//             <p class="item-name">${name}</p><span class="item-price">$${price}</span>
+//             </div>
+//         </div>
+//         `
+//     }).join(""))
+// }
 
 // let row1_Shop = () => {
 //     return (row1_product.innerHTML = storeItems[1].map((x) => {
