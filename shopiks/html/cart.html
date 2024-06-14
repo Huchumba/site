@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart items</title>
+    <link rel="stylesheet" href="../scss/cart.css">
+    <link rel="stylesheet" href="../font-awesome/all.css">
+</head>
+<body>
+
+    <div class="navbar-container">
+        <nav class="navbar"> 
+            <div class="sidenav-toggler bars">
+                <div id="bar"></div>
+                <div id="bar"></div>
+                <div id="bar"></div>
+            </div>         
+            <ul>
+                <li><a href="index.html" id="logo">Shopiks</a></li>
+            </ul>
+
+            <ul id="offers"> 
+                <li> <a href="#special-offers"><i class='fa-solid fa-gift'></i> <p>Offers</p></a></li>
+            </ul>
+
+            <ul id="search">
+                <li id="search-items"><input type="search" name="input-search" id="input-search" placeholder="Search Shopiks">
+                    <i class="fa-solid fa-search" id="search-wide-screen"></i>
+                    <i class="bx bx-search" id="search-mobile"></i>
+                    
+            </li>
+            </ul>
+
+            <ul id="nav-menu">
+                <li>
+                    <span  id="toggle-dropdown"><i class='fa-solid fa-user'></i> <p>Account</p></span>
+                <ul class ="nav-dropdown">
+                        <a href="#">Login</a>
+
+                        <a href="#">Register</a>
+                </ul>
+                </li>
+                <li id="shopping-cart"><a href="cart.html"><i class='fa-solid fa-cart-shopping'></i> <p>Cart</p>
+                <div class="cart-items-no" id="cart-items-no">0</div>
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-pages">
+
+        <section class="cart-products">
+            <div class="product-rows all-cart-items-container" id="product-rows"></div> 
+            <div class="label" id="label"></div>
+
+        </section>
+    </main>
+    <script src="../font-awesome/all.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/shopItems.js"></script>
+    <script src="../js/cartPage.js"></script>
+</body>
+</html>
