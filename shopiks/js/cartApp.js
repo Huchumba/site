@@ -133,7 +133,7 @@ filters.addEventListener('input', filterGoods);
 
 function filterGoods() {
   const categoryes = [...filters.querySelectorAll('#category input:checked')].map(n => n.value),
-  rating = [...filters.querySelectorAll('#rating input:checked')].map(n => n.value),
+  rating = [...filters.querySelectorAll('#rating input:checked')].map(n => parseInt(n.value)),
   reliability = [...filters.querySelectorAll('#reliability input:checked')].map(n => n.value),
   model = [...filters.querySelectorAll('#model input:checked')].map(n => n.value),
   priceMin = document.querySelector('#price-min').value, 
@@ -141,7 +141,7 @@ function filterGoods() {
     
   outputGoods(data.filter(n => (    
     (!categoryes.length || categoryes.includes(n.title)) &&
-    (!rating.length || rating.includes(n.rating)) &&
+    (!rating.length || n.rating >= 4) &&
     (!reliability.length || reliability.includes(n.reliability)) &&
     (!model.length || model.includes(n.model)) &&
     (!priceMin || priceMin <= n.price) && (!priceMax || priceMax >= n.price)    

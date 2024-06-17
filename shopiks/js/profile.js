@@ -1,40 +1,59 @@
-document.getElementById('profileForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-    
-    // Get the form data
-    const formData = new FormData(event.target);
-    const userData = {};
-    formData.forEach((value, key) => {
-        userData[key] = value;
-    });
 
-    const username = usernameInput.value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+document.addEventListener("DOMContentLoaded", function() {
+    // Функция для выполнения запроса к API
+    async function fetchUserData() {
+        try {
+            const response = await fetch('https://666143d063e6a0189fe90cbf.mockapi.io/users');
+            const data = await response.json();
+            if (data.length > 0) {
+                const userId = localStorage.getItem('id'); // Предполагается, что вы хотите получить данные только первого пользователя
+                const user = data.find(user => user.id === userId);
+                if (user) {
+                    document.getElementById("username").value = user.username;
+                    document.getElementById("email").value = user.email;
+                    document.getElementById("password").value = user.password;
+                }
+                else {
+                    console.log('Пользователь не найден');
+                }
+            } else {
+                console.log('База данных пуста');
+            }
+        } catch (error) {
+            console.error('Произошла ошибка при получении данных:', error);
+        }
+    }
 
-    // Send the updated data to the server
-    fetch('https://666143d063e6a0189fe90cbf.mockapi.io/users/1', {
+    async function updateUserData() {
+        const userId = localStorage.getItem('id');
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value
+
+
+    fetch(`https://666143d063e6a0189fe90cbf.mockapi.io/users/${userId}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username,
-            email,
-            password
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Update the form fields with the new data
-        localStorage.getItem("UserId", data.id)
-        document.getElementById('username').value = data.username;
-        document.getElementById('password').value = data.password;
-        document.getElementById('email').value = data.email;
-        alert('Profile updated successfully!');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Failed to update profile');
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    email, 
+                    password
+                })
+            });
+            if (response.ok) {
+                console.log('Данные пользователя успешно обновлены');
+            } else {
+                console.log('Произошла ошибка при обновлении данных пользователя');
+            }
+    }
+
+    // Вызов функции для получения данных пользователя
+    fetchUserData();
+
+    document.getElementById("saveButton").addEventListener("click", function() {
+        updateUserData();
     });
 });
