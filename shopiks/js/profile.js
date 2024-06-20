@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("username").value = user.username;
                     document.getElementById("email").value = user.email;
                     document.getElementById("password").value = user.password;
+                    
                 }
                 else {
                     console.log('Пользователь не найден');

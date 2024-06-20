@@ -375,7 +375,9 @@ function Sort1 () {
             "<img class='product-img' src='" + product.img +"' alt=''>" +
             "<div class='add-to-cart-more'>" +
                 "<div class='more'>" +
+                "<a href='details.html'>" +
                     "<i class='fa-solid fa-info'></i>" +
+                "</a>" +
                 "</div>" +
                 "<div class='add-to-cart' onclick='addToCart(" + product.id + ")' id='" + product.id + "'>" +
                     "<i class='fa-solid fa-cart-plus add-item-to-cart'></i>" +
@@ -408,7 +410,9 @@ function Sort2 () {
             "<img class='product-img' src='" + product.img +"' alt=''>" +
             "<div class='add-to-cart-more'>" +
                 "<div class='more'>" +
+                "<a href='details.html'>" +
                     "<i class='fa-solid fa-info'></i>" +
+                "</a>" +
                 "</div>" +
                 "<div class='add-to-cart' onclick='addToCart(" + product.id + ")' id='" + product.id + "'>" +
                     "<i class='fa-solid fa-cart-plus add-item-to-cart'></i>" +

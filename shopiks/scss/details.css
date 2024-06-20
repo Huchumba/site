@@ -1,0 +1,46 @@
+.card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card_image {
+    max-width: 200px;
+    height: auto;
+    margin-right: 16px;
+  }
+  
+  .card2 {
+    flex: 1;
+  }
+  
+  .card_name {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .card_price {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+  
+  .card_price::after {
+    content: " $";
+  }
+
+  .card_rating {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .card_rating::after {
+    content: " / 5 stars";
+  }
+  
+  .card_desc {
+    font-size: 16px;
+  }

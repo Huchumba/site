@@ -156,7 +156,9 @@ function outputGoods(goods) {
              <img class = "product-img" src=${n.img} alt="">
              <div class="add-to-cart-more">
                  <div class="more">
-                 <i class = "fa-solid fa-info"></i>
+                 <a href="details.html?id=${n.id}">
+                  <i class = "fa-solid fa-info"></i>
+                 </a>
                  </div>
                  <div class="add-to-cart" onclick = "addToCart(${n.id})" id = "${n.id}">
                  <i class="fa-solid fa-cart-plus add-item-to-cart"></i>
@@ -169,5 +171,3 @@ function outputGoods(goods) {
          </div>
   `).join('');
 }
-
-

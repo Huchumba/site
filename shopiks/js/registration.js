@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(data => {
             console.log('Success:', data);
             localStorage.setItem('userId', data.id); // Сохраняем ID пользователя в localStorage
-            window.location.href = 'profile.html'; // Перенаправляем пользователя на страницу профиля
+            window.location.href = 'login.html'; // Перенаправляем пользователя на страницу профиля
         }).catch((error) => {
             console.error('Error:', error);
         });
