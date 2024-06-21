@@ -116,6 +116,25 @@ button:hover {
     color: #4330f1;
 }
 
+.login-link-profile {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #4330f1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-link-profile:hover {
+    color: #4330f1;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
 /* Добавляем эффекты для ввода текста */
 input[type="text"]:not(:placeholder-shown),
 input[type="email"]:not(:placeholder-shown),

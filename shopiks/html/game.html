@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../scss/game.css">
+<title>Clicker Game</title>
+</head>
+<body>
+    <a href="profile.html" class="login-link">Back</a>
+    <div class="game">
+        <h1>Clicker Game</h1>
+        <p>tap on "Accumulate Points" button to get points. Press the "Send Points" button to save result</p>
+        <p class="points">Points: <span id="points">0</span></p>
+        <button id="accumulateButton">Accumulate Points</button>
+        <button id="sendButton">Send Points</button>
+    </div>
+
+
+<script>
+
+const url = 'https://666143d063e6a0189fe90cbf.mockapi.io/users/';
+let points = 0;
+const pointsElement = document.getElementById('points');
+const accumulateButton = document.getElementById('accumulateButton');
+const sendButton = document.getElementById('sendButton');
+
+// Получаем id пользователя из localStorage
+const userId = localStorage.getItem('id'); // Если id не найден, используем значение по умолчанию '1'
+
+// Загружаем текущее количество баллов пользователя из базы данных
+fetch(url + userId)
+    .then(response => response.json())
+    .then(data => {
+        points = parseFloat(data.point) || 0; // Получаем баллы из базы данных или устанавливаем значение по умолчанию 0
+        pointsElement.textContent = points;
+    })
+    .catch(error => console.error('Error:', error));
+
+accumulateButton.addEventListener('click', () => {
+    points++;
+    pointsElement.textContent = points;
+});
+
+sendButton.addEventListener('click', () => {
+    // Отправляем данные на сервер
+    const data = {
+        point: points.toFixed(2)
+    };
+
+    fetch(url + userId, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+});
+</script>
+</body>
+</html>
