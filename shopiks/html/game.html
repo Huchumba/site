@@ -1,65 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../scss/game.css">
-<title>Clicker Game</title>
+  <meta charset="UTF-8">
+  <!-- <link rel="stylesheet" href="../scss/game.css"> -->
+  <title>Game</title>
+  <style>
+    #lives, #points, #time, #end-points, #start-points {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+    #canvas {
+      border: 1px solid black;
+    }
+
+    #pause-button, #resume-button, #exit-button, #repload-button, #start-button {
+      background-color: #4330f1; /* Градиентный фон */
+      color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+}
+  </style>
 </head>
 <body>
-    <a href="profile.html" class="login-link">Back</a>
-    <div class="game">
-        <h1>Clicker Game</h1>
-        <p>tap on "Accumulate Points" button to get points. Press the "Send Points" button to save result</p>
-        <p class="points">Points: <span id="points">0</span></p>
-        <button id="accumulateButton">Accumulate Points</button>
-        <button id="sendButton">Send Points</button>
-    </div>
+    <div id="start-screen">
+        <h1>Space War</h1>
+        <div id="start-points">Вы должны не дать вражеским кораблям достигнуть нижней границы экрана. За каждое попадание вам будут начисляться баллы</div>
+        <button id="start-button">Start</button>
+      </div>
+
+      <div id="game-screen">
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <div id="lives">Lives: 3</div>
+        <div id="points">Points: 0</div>
+        <div id="time">Time: 60 seconds</div>
+        <button id="pause-button">Pause</button>
+        <button id="resume-button">Resume</button>
+        <button id="exit-button">Exit</button>
+      </div>
+
+      <div id="pause-screen">
+        <!-- Пауза -->
+      </div>
+      <div id="end-screen">
+        <h1>Game Over</h1>
+        <div id="end-points">You earned 0 points!</div>
+        <button id="repload-button">Play again</button>
+      </div>
+
+  <script>
+    let canvas;
+    let ctx;
+    let player = {
+  x: 200,
+  y: 350,
+  width: 20,
+  height: 20,
+  lives: 3
+};
+    let playerX = 200;
+    let playerY = 350;
+    let playerDesktop;
+    let enemies = [];
+    let projectiles = [];
+    let lives = 3;
+    let point;
+    let gameTime = 10;
+    let isGameStarted = false;
+    let userId;
+    let enemiesMove = true;
+    let end = 1;
 
 
-<script>
+    document.getElementById('game-screen').style.display = 'none';
+// Create a pause screen element
+let pauseScreen = document.createElement('div');
+pauseScreen.id = 'pause-screen';
+pauseScreen.style.position = 'absolute';
+pauseScreen.style.top = '0';
+pauseScreen.style.left = '0';
+pauseScreen.style.width = '100%';
+pauseScreen.style.height = '100%';
+pauseScreen.style.background = 'rgba(0, 0, 0, 0.5)';
+pauseScreen.style.display = 'none';
+let endScreen = document.getElementById('end-screen');
+endScreen.style.display = 'none';
+document.body.appendChild(pauseScreen);
 
-const url = 'https://666143d063e6a0189fe90cbf.mockapi.io/users/';
-let points = 0;
-const pointsElement = document.getElementById('points');
-const accumulateButton = document.getElementById('accumulateButton');
-const sendButton = document.getElementById('sendButton');
+    // Load user data from localStorage
+    userId = localStorage.getItem('id');
+    if (!userId) {
+      userId = Math.floor(Math.random() * 100000);
+      localStorage.setItem('id', userId);
+    }
 
-// Получаем id пользователя из localStorage
-const userId = localStorage.getItem('id'); // Если id не найден, используем значение по умолчанию '1'
+    // Event listeners
+    document.getElementById('start-button').addEventListener('click', startGame);
+    document.addEventListener('keydown', handleKeyDown);
 
-// Загружаем текущее количество баллов пользователя из базы данных
-fetch(url + userId)
-    .then(response => response.json())
+    let pauseButton = document.getElementById('pause-button');
+let exitButton = document.getElementById('exit-button');
+let resumeButton = document.getElementById('resume-button');
+let reploadButton = document.getElementById('repload-button');
+let pointsElement = document.getElementById('points');
+
+pauseButton.addEventListener('click', pauseGame);
+exitButton.addEventListener('click', exitGame);
+resumeButton.addEventListener('click', resumeGame);
+reploadButton.addEventListener('click', reploadGame);
+
+function updateGameScreen() {
+  document.getElementById('lives').textContent = `Lives: ${lives}`;
+  document.getElementById('points').textContent = `Points: ${point}`;
+  document.getElementById('time').textContent = `Time: ${gameTime} seconds`;
+}
+
+function pauseGame() {
+  isGamePaused = true;
+  enemiesMove = false;
+  // Pause the enemies movement
+  // enemies.forEach(enemy => {
+  //   enemy.movementEnabled = false;
+  // });
+}
+
+function resumeGame() {
+  isGamePaused = false;
+  enemiesMove = true;
+  // document.getElementById('pause-screen').style.display = 'none';
+  // document.getElementById('game-screen').style.display = 'block';
+}
+
+function exitGame() {
+  // Выход из игры
+  isGameStarted = false;
+window.location.href = 'profile.html'
+}
+
+function reploadGame() {
+  location.reload();
+}
+
+// Реализуем потерю жизней при соприкосновении игрока с врагом
+function checkCollisions() {
+  if (!isGamePaused) {
+    enemies.forEach(enemy => {
+      if (enemy.movementEnabled) {
+        // Check for collision with the player
+        if (checkCollision(playerX, playerY, enemy.x, enemy.y)) {
+          // Collision detected! Reduce lives and reset player position
+          lives--;
+          playerX = 200;
+          playerY = 350;
+        }
+      }
+    });
+  }
+}
+
+function checkCollision(x1, y1, x2, y2) {
+  // Simple rectangle collision detection
+  if (x1 + 30 > x2 && x1 < x2 + 30 && y1 + 30 > y2 && y1 < y2 + 30) {
+    return true;
+    console.log('+');
+  }
+  return false;
+}
+
+    function startGame() {
+      isGameStarted = true;
+      document.getElementById('start-screen').style.display = 'none';
+      document.getElementById('game-screen').style.display = 'block';
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');
+      updateGameScreen();
+      countdownTimer();
+      drawGame();
+      spawnEnemies();
+      getPointsFromDatabase();
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === ' ') {
+        fireProjectile();
+      }
+      if (event.key === 'ArrowLeft' && enemiesMove) {
+        playerX -= 10;
+      }
+      if (event.key === 'ArrowRight' && enemiesMove) {
+        playerX += 10;
+      }
+    }
+
+    function fireProjectile() {
+      let projectile = {
+        x: playerX + 10,
+        y: playerY - 10,
+        width: 7,
+        height: 7
+      };
+      projectiles.push(projectile);
+    }
+
+    function spawnEnemies() {
+      setInterval(() => {
+        let enemy = {
+          x: Math.random() * (canvas.width - 10),
+          y: 0,
+          width: 20,
+          height: 20
+        };
+        if (enemiesMove) {
+          enemies.push(enemy);
+        }
+        
+      }, 1000);
+    
+    }
+
+    function updateGameScreen() {
+      document.getElementById('lives').textContent = `Lives: ${lives}`;
+      document.getElementById('points').textContent = `Points: ${point}`;
+      document.getElementById('time').textContent = `Time: ${gameTime} seconds`;
+    }
+
+    function countdownTimer() {
+      if (enemiesMove) {
+        gameTime--;
+      }
+      updateGameScreen();
+      if (gameTime <= 0) {
+        endGame();
+      } else {
+        setTimeout(countdownTimer, 1000);
+      }
+      
+    }
+
+    function endGame() {
+      isGameStarted = false;
+      document.getElementById('game-screen').style.display = 'none';
+      document.getElementById('end-screen').style.display = 'block';
+      document.getElementById('end-points').textContent = `You earned ${point} points!`;
+      // Update user points in database
+      updatePointsInDatabase(point);
+    }
+
+    function getPointsFromDatabase() {
+  fetch(`https://666143d063e6a0189fe90cbf.mockapi.io/users/${userId}`)
+  .then(response => response.json())
     .then(data => {
-        points = parseFloat(data.point) || 0; // Получаем баллы из базы данных или устанавливаем значение по умолчанию 0
-        pointsElement.textContent = points;
+        point = parseFloat(data.point) || 0; // Получаем баллы из базы данных или устанавливаем значение по умолчанию 0
+        pointsElement.textContent = point;
     })
     .catch(error => console.error('Error:', error));
+}
 
-accumulateButton.addEventListener('click', () => {
-    points++;
-    pointsElement.textContent = points;
-});
-
-sendButton.addEventListener('click', () => {
-    // Отправляем данные на сервер
-    const data = {
-        point: points.toFixed(2)
-    };
-
-    fetch(url + userId, {
+    function updatePointsInDatabase(point) {
+      fetch(`https://666143d063e6a0189fe90cbf.mockapi.io/users/${userId}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-});
-</script>
+        body: JSON.stringify({ point: point })
+      })
+      .then(response => response.json())
+      .then(data => console.log(`Points updated successfully!`, data))
+      .catch(error => console.error(`Error updating points`, error));
+    }
+
+    function drawGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(playerX, playerY, 20, 20);
+      enemies.forEach(enemy => {
+        ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+        if (enemiesMove) {
+          enemy.y += 2;
+        }
+        if (enemy.y > canvas.height) {
+          enemies.splice(enemies.indexOf(enemy), 1);
+          lives--;
+          updateGameScreen();
+        }
+        if (lives == 0 && end == 1) {
+          end--;
+        endGame();
+      }
+      });
+
+      projectiles.forEach(projectile => {
+        ctx.fillRect(projectile.x, projectile.y, projectile.width, projectile.height);
+        projectile.y -= 5;
+        if (projectile.y < 0) {
+          projectiles.splice(projectiles.indexOf(projectile), 1);
+        }
+      });
+
+      checkCollisions();
+
+      requestAnimationFrame(drawGame);
+    }
+
+    function checkCollisions() {
+      enemies.forEach(enemy => {
+        projectiles.forEach(projectile => {
+          if (checkCollision(enemy, projectile)) {
+            enemies.splice(enemies.indexOf(enemy), 1);
+            projectiles.splice(projectiles.indexOf(projectile), 1);
+            point++;
+            updateGameScreen();
+          }
+        }
+        
+      );
+      });
+    }
+
+    function checkCollision(rect1, rect2) {
+      if (rect1.x < rect2.x + rect2.width &&
+          rect1.x + rect1.width > rect2.x &&
+          rect1.y < rect2.y + rect2.height &&
+          rect1.y + rect1.height > rect2.y) {
+        return true;
+      }
+      return false;
+    }
+
+   
+
+    //startGame();
+  </script>
 </body>
 </html>
