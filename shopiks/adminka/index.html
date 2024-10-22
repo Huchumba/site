@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Меню</h2>
+            <button id="usersTabButton">Пользователи</button>
+            <button id="productsTabButton">Товары</button>
+            <button id="themeToggleButton">Темная тема</button>
+            
+        </div>
+        <div class="main-content">
+            <h1 id="pageTitle">Управление пользователями</h1>
+            <button id="addUserButton">Добавить пользователя</button>
+            <form id="userForm" style="display: none;">
+                <input type="hidden" id="userId" />
+                <input type="text" id="username" placeholder="Имя пользователя" required />
+                <input type="text" id="password" placeholder="Пароль" required />
+                <input type="email" id="email" placeholder="Email" required />
+                <input type="number" id="point" placeholder="Очки" required />
+                <button type="submit">Сохранить</button>
+                <button type="button" id="cancelButton">Отмена</button>
+            </form>
+            <table id="userTable" style="display: table;">
+                <thead>
+                    <tr>
+                        <th>Имя пользователя</th>
+                        <th>Email</th>
+                        <th>Очки</th>
+                        <th>Пароль</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="userList"></tbody>
+            </table>
+
+            <!-- Товары -->
+            <div id="productSection" style="display: none;">
+                <h1 id="productTitle">Управление товарами</h1>
+                <button id="addProductButton">Добавить товар</button>
+                <form id="productForm" style="display: none;">
+                    <input type="hidden" id="productId" />
+                    <input type="text" id="name" placeholder="Имя товара" required />
+                    <input type="text" id="title" placeholder="Название" required />
+                    <input type="number" id="price" placeholder="Цена" required />
+                    <input type="text" id="model" placeholder="Модель" required />
+                    <input type="number" id="rating" placeholder="Рейтинг" required />
+                    <input type="number" id="reliability" placeholder="Надежность" required />
+                    <button type="submit">Сохранить</button>
+                    <button type="button" id="productCancelButton">Отмена</button>
+                </form>
+                <table id="productTable">
+                    <thead>
+                        <tr>
+                            <th>Имя товара</th>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>Модель</th>
+                            <th>Рейтинг</th>
+                            <th>Надежность</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
